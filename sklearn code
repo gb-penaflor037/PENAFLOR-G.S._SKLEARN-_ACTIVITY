@@ -2,8 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 url = "https://raw.githubusercontent.com/gb-penaflor037/PENAFLOR-G.S._SKLEARN-_ACTIVITY/6894c0cd7b2e4ef4f456a803975d661add3ae979/Supervised-Data-Numerics.csv"
-column_names = ['Student', 'GPA', 'Family Income (k)', 'Extracurricular (Hours)',
-'Scholarship']
+column_names = ['Student', 'GPA', 'Family Income (k)', 'Extracurricular (Hours)','Scholarship']
 
 data = pd.read_csv(url)
 print(data.columns)
@@ -45,6 +44,5 @@ predicted_outcome = model.predict(new_data)
 
 predicted_proba = model.predict_proba(new_data)
 
-print(f"Predicted Outcome: {'Scholarship Recipient' if predicted_outcome[0] == 1 else 'Not
-a Scholar'}")
+print(f"Predicted Outcome: {'Scholarship Recipient' if predicted_outcome[0] == 1 else 'Not a Scholar'}")
 print(f"Probability of being a Scholar: {predicted_proba[0][1] * 100:.2f}%")
