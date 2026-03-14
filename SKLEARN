@@ -1,30 +1,44 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
+
 url = "https://raw.githubusercontent.com/AB-105/BayesianStatistics/refs/heads/main/Supervised%20Data%20Numerics.csv"
 column_names = ['Student', 'GPA', 'Family Income (k)', 'Extracurricular (Hours)',
 'Scholarship']
+
 data = pd.read_csv(url)
 print(data.columns)
+
 X = data.drop(['Student', 'Scholarship'], axis=1)
 y = data['Scholarship']
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
 print(f"Training set shape: {X_train.shape}")
 print(f"Testing set shape: {X_test.shape}")
+
 from sklearn.linear_model import LogisticRegression
+
 model = LogisticRegression(max_iter=1000)
+
 model.fit(X_train, y_train)
+
 print(f"Coefficients: {model.coef_}")
 print(f"Intercept: {model.intercept_}")
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
 y_pred = model.predict(X_test)
+
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy * 100:.2f}%")
+
 conf_matrix = confusion_matrix(y_test, y_pred)
 print("Confusion Matrix:")
 print(conf_matrix)
+
 class_report = classification_report(y_test, y_pred)
 print("Classification Report:")
 print(class_report)
+
 new_data = [[3.5, 120, 10]]
 predicted_outcome = model.predict(new_data)
 predicted_proba = model.predict_proba(new_data)
