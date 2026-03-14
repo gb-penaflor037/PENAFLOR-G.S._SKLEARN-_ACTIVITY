@@ -1,2 +1,0 @@
-# PENAFLOR-G.S._SKLEARN-_ACTIVITY
-sklearn
